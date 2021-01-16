@@ -6,7 +6,7 @@ export const VIEWPORT_DEFAULTS_TOKEN = new InjectionToken<ViewportConfig>('viewp
 export const viewportDefaultConfig: ViewportConfig = {
   width: 640,
   height: 480,
-  unitSize: 20,
+  unitSize: 15,
   onFrameRender: () => {
   },
   onViewportReady: () => {

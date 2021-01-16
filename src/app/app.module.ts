@@ -3,6 +3,7 @@ import {NgModule} from '@angular/core';
 
 import {AppComponent} from './app.component';
 import {ViewportModule} from './components/viewport/viewport.module';
+import {ConwayViewModule} from './views/conway-view/conway-view.module';
 
 @NgModule({
   declarations: [
@@ -10,7 +11,8 @@ import {ViewportModule} from './components/viewport/viewport.module';
   ],
   imports: [
     BrowserModule,
-    ViewportModule
+    ViewportModule,
+    ConwayViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

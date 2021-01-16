@@ -28,15 +28,14 @@ export class ViewportComponent implements OnInit, AfterViewInit, ViewportConfig 
   constructor(
     private readonly drawerService: DrawerService,
     @Inject(VIEWPORT_DEFAULTS_TOKEN)
-    readonly viewportConfigDefaults: ViewportConfig
-  ) {
-    this.config = defaults(this.config, viewportConfigDefaults);
+    private readonly viewportConfigDefaults: ViewportConfig
+  ) {  }
+
+  ngOnInit(): void {
+    this.config = defaults(this.config, this.viewportConfigDefaults);
     this.width = this.config.width;
     this.height = this.config.height;
     this.unitSize = this.config.unitSize;
-  }
-
-  ngOnInit(): void {
     this.api = {
       clearViewport: this.clear,
       fillCell: this.fillCell,
@@ -59,7 +58,7 @@ export class ViewportComponent implements OnInit, AfterViewInit, ViewportConfig 
     this.drawerService.clear(this.width, this.height);
     const x = (this.position.x + this.offset.x);
     const y = (this.position.y + this.offset.y);
-    this.drawerService.drawChequeredPattern(x % 20, y % 20, 20, this.width, this.height);
+    this.drawerService.drawChequeredPattern(x % this.unitSize, y % this.unitSize, this.unitSize, this.width, this.height);
   };
 
   mouseMove({offsetX, offsetY}): void {
@@ -94,19 +93,17 @@ export class ViewportComponent implements OnInit, AfterViewInit, ViewportConfig 
 
     this.drawerService.setContext(this.context);
     const {x, y} = this.position;
-    this.drawerService.drawChequeredPattern(x, y, 20, this.width, this.height);
+    this.drawerService.drawChequeredPattern(x, y, this.unitSize, this.width, this.height);
 
     this.initRenderer();
   }
 
   initRenderer(): void {
-    setInterval(() => this.render(), 1);
+    setInterval(() => this.render(), 10);
   }
 
 
   render(): void {
     this.config.onFrameRender(this.api);
   }
-
-
 }
