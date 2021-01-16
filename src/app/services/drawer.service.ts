@@ -3,9 +3,7 @@ import {DrawerCtxError} from '../errors/drawer-errors';
 import {Point} from '../utils/point';
 import {throwError} from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DrawerService {
   private context: CanvasRenderingContext2D;
 
@@ -57,5 +55,12 @@ export class DrawerService {
     if (!this.context) {
       throw new DrawerCtxError();
     }
+  }
+
+  drawCell(x: number, y: number, size: number): void {
+    this.contextAssertion();
+    this.context.beginPath();
+    this.context.fillRect(x, y, size, size);
+    this.context.stroke();
   }
 }
