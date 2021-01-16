@@ -1,1 +1,2 @@
-<canvas #canvasElement></canvas>
+<canvas (mousemove)="mouseMove($event)" (mousedown)="initDragPosition($event)" (mouseup)="setNewPosition($event)"
+        #canvasElement></canvas>
