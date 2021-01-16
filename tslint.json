@@ -140,12 +140,14 @@
       true,
       "attribute",
       "app",
+      "iwa",
       "camelCase"
     ],
     "component-selector": [
       true,
       "element",
       "app",
+      "iwa",
       "kebab-case"
     ]
   }
